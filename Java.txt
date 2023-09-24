@@ -1,0 +1,66 @@
+Introduction to Java
+The key feature of Java are:
+- plaform independence making the programs developed with Java Write Once Run Anywhere (WORA). Java Virtual Machine (JVM)
+compiles Java code to plaform independent byte code. At runtime byte code is translated to machine code.
+- Garbage collector that automatically releases unused memory.
+- Supports multiple programming paradigms. Primarily imperative but supports generic programming, functional programming and
+more.
+
+Developed by James Gosling at Sun MicroSystems in 1991. Initially called Oak but was renamed to Java. Java 1.0 was released
+in 1996.
+
+Variable declaration general form: DataType variableName = initialization;
+Since Java 10 for type inference support: var variableName = initialization;
+
+Comment types:
+- End-of-line comments -> //
+- Multi-line comments -> /* */
+- Java documentation comments -> /** */
+
+In Java, all data types are separated into two groups: primitive types and reference types.
+
+Primitive types:
+numbers: 
+ - integers types
+	- long
+	- int
+	- short
+	- byte
+ - floating point types (both have limited number of significant decimal digits)
+	- float, should be succeeded with F or f
+	- decimal 
+Characters
+ - char
+Boolean
+ - boolean
+
+Precedence order for arithmetic operators from highest to lowest
+parentheses;
+unary plus/minus;
+multiplication, division, the remainder;
+addition, subtraction;
+relational operators;
+logical operators;
+
+Common integer types are long and int. If a number ends with the letter L or l, it is considered as long, otherwise, it is
+int. For example: 22L
+
+Precedence of logical operators: ! (NOT), ^ (XOR), && (AND), || (OR).
+
+There exist a labelled break branch statement in Java
+
+The combination of the name of the method and the list of its parameters is known as a method signature.
+
+Modifiers:
+1. Access - define the visibility of the method.
+2. Non Access - provide information about the behavior of methods to JVM.
+
+The approach of dividing a complex program into subroutines is called functional decomposition.
+
+You may consider an array as a collection of elements of the same type. All elements are stored in the memory sequentially.
+Data_Type[] numbers = { Value1, Value2,... };
+Data_Type[] numbers = new Data_Type[SIZE_OF_ARRAY];
+It's possible to pass an arbitrary number of the same type of arguments to a method using a special syntax named varargs
+(variable-length arguments). These arguments are specified by three dots after the type. In the body of the method, you can
+process this parameter as a regular array of the specified type.
+If a method has more than one parameter, the vararg parameter must be the last one in the declaration of the method.

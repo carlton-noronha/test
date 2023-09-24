@@ -1,0 +1,66 @@
+Cloud Computing:
+The practice of using remote servers hosted on the internet to store, manage and process data rather than using a local server / personal computer.
+
+On Premise:
+-You own the server
+-You hire the IT people
+-You rent out the real estate
+-You take all the risk
+
+Cloud Provider
+-The own the servers
+-They hire the IT people
+-The rent out the real estate
+-You configure the services and code. Rest is taken care by them.
+
+Types of Hosting
+1. Dedicated Hosting: The single physical server belonging to the individual/organiztion only.
+-Expensive, 
+2. VPS (Virtual Private Server): A single server that is virtualized so that many different applications can be hosted each having their own resources.
+-Scalability, Customizability, isolation
+3. Shared Hosting: A single physical server shared with multiple users so resources are shared
+-Cheap, less isolation
+4.Cloud Hosting: Simialr to VPS however multiple physical machines are involved.
+-Reliable
+
+Cloud Service Providers (CSPs):
+- Offer multiple cloud services
+- Services can be chained together to form cloud architecture
+- Accessible via a single unified API
+- Offer automation via Infrastructure as code (IAC)
+- Rich monitoring of services
+- Plans highlighting cost for services consumes e.g per second, per hour
+- Have Infrastructure as a service offering.
+
+Types of cloud computing:
+1. SAAS - Software as a service - A product ran and maintained by the service provider. Don't worry about how the service is maintained. It just works and
+remains available. Salesforce, GMAIL, Office365.
+2. PAAS - Platform as a service - Focus and development and management of your apps. Don't worry about provisioning, configuring and or understanding the
+hardware or OS. Heroku, Elastic Beanstalk
+3.IAAS - The basic building block for cloud IT. Provides access to networking features, computers and data storage space. We don't worry about IT staff,
+datacenters and hardware. Azure, AWS
+
+Cloud Computing Deployment Models:
+Public cloud - everything (workload or project) is build on CSP
+Private Cloud - Everything build on company's datacenter (on premise)
+Hybrid Cloud - Both Public and private cloud
+Cross Cloud - Using multiple Cloud Providers
+
+AWS Non Root User Account:
+Access Key ID: AKIA2NP4NQMAYJLEDB43
+Secret Access Key: 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
+Account Number: 716178293505
+Account User Name: carlton-non-root
+
+Burning Platform is the term used when a company abandons old technology for new technology with the uncertainity of success and can be motivated by fear that
+the organization's survival relies on digital transformation.
+
+Benefits of Cloud:
+1. Pay on demand - You pay for only what you use.
+2. Sharing the cost with other customers
+3. Scale up or down based on need i.e. Lauch and destroy services whenever
+4. Lauch resources within minutes
+5. No expenditure on maintenance
+6. Launch your app globally in multiple regions to reduce latency.
+7. Reliable - Fault tolerant, data replication, data backup
+8. The underlying software and hardware is patched, upgraded and replaced by the cloud provider with affecting end consumer

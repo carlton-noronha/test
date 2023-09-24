@@ -1,0 +1,41 @@
+Terraform is a tool for building, changing and versioning infrastructure
+safely and efficiently.
+
+Terraform falls under the Infrastructure As Code (IAC) tool category
+
+Provisioning Cloud Resources:
+1. GUI
+2. CLI / API
+3. IAC
+
+Categories of IAC tools:
+1. Ad hoc scripts
+2. Configuration management tools - manage the configuration of 
+infrastructure, application and services
+3. Server templating tools - build the template to be deployed(eg. Packer)
+4. Orchestration tools - managing application deployment
+5. Provisioning tools
+
+These tools can be declarative or imperative.
+
+IAC Provisioning
+1. Cloud specific: AWS Clod Formation, Microsoft Azure Resource manager,
+Google Cloud Plaform Cloud Deployment Manager.
+2. Cloud Agnostic: Terraform, Pulumi
+
+Provisioning tools and configuration management tools compliment each
+other. Provisioning tools like teraaform can be used for cretaing the
+infrastructure and configuration management tools can be used configuring
+application deployment. Provisioning tools tend to be declarative while
+configuration management tools tend to be imperative.
+Ansible is a configuration management tool.
+
+Common Patterns
+1. Provisioning + Configuration Management
+2. Provisioning + Server Templating
+3. Provisioning + Orchestration
+
+Terraform Core: Terraform State + Terraform Config + Provider
+
+
+

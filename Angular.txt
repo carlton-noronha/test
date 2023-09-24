@@ -1,0 +1,466 @@
+Angular is a development platform, built on TypeScript. As a platform, Angular includes:
+A component-based framework for building scalable web applications
+A collection of well-integrated libraries that cover a wide variety of features, including routing, forms management, client-server communication, and more
+A suite of developer tools to help you develop, build, test, and update your code
+
+Angular is used for building efficient SPAs (Single Page Applications). An SPA is a web app implementation that loads only a single web document, and then
+updates the body content of that single document via JavaScript APIs when different content is to be shown.
+
+AngularJS also known as Angular 1 was the edition of Angular Framework. However, it being non future proof was substituted with Angular. Version 2 and above
+are reffered to as just, Angular, without the JS.
+
+Components:
+-----------
+Components are the building blocks that compose an application. A component includes a TypeScript class with a @Component() decorator, an HTML template, and
+styles. The @Component() decorator specifies the following Angular-specific information:
+
+A CSS selector that defines how the component is used in a template. HTML elements in your template that match this selector become instances of the component.
+
+An HTML template that instructs Angular how to render the component.
+
+An optional set of CSS styles that define the appearance of the template's HTML elements.
+
+Templates:
+----------
+Every component has an HTML template that declares how that component renders. You define this template either inline or by file path.
+
+Angular adds syntax elements that extend HTML so you can insert dynamic values from your component. Angular automatically updates the rendered DOM when your
+component's state changes.
+
+1. Interpolation: Inserting text dynamically in the template.
+
+For example: <p>{{ message }}</p>
+
+The use of double curly braces—they instruct Angular to interpolate the contents within them.
+
+2. Property Binding:
+Angular also supports property bindings, to help you set values for properties and attributes of HTML elements
+For example:
+<p
+  [id]="sayHelloId"
+  [style.color]="fontColor">
+  You can set my color in the component!
+</p>
+The square brackets—that syntax indicates that you're binding the property or attribute to a value in the component class
+
+3. Event Listeners
+Event listeners to listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches. You declare an event listener by specifying
+the event name in parentheses:
+For example:
+<button
+  type="button"
+  [disabled]="canClick"
+  (click)="sayMessage()">
+  Trigger alert message
+</button>
+
+Dependency injection:
+---------------------
+Dependency injection lets you declare the dependencies of your TypeScript classes without taking care of their instantiation. Angular handles the instantiation.
+This design pattern lets you write more testable and flexible code.
+
+Angular CLI
+The Angular CLI is a command-line interface tool that you use to initialize, develop, scaffold, and maintain Angular applications directly from a command shell.
+The Angular CLI makes some tasks trouble-free. For example:
+
+ng build - Compiles an Angular application into an output directory.
+ng serve - Builds and serves your application, rebuilding on file changes.
+ng generate	- Generates or modifies files based on a schematic.
+ng test	- Runs unit tests on a given project.
+ng e2e - Builds and serves an Angular application, then runs end-to-end tests.
+ng new <name> - Creates a new angular project.
+ng serve --open - The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files. The --open (or just -o)
+option automatically opens your browser to http://localhost:4200/
+ng generate component / ng g c <component_name>
+ng generate directive / ng g d <directive_name>
+ng generate pipe / ng g p <pipe_name>
+
+How Angular Processing the Initial Build of CLI ?
+-------------------------------------------------
+The main.ts file is what Angular uses to to bootstrap the application. It accepts the Root Module. The Root Module in turn mentions all the Components and other
+modules that are part of the application.
+The main HTML file of the application is index.html. This file is used by Angular to render UI based on user interaction or state changes. After the application
+is built additional JS files are added to HTML file which helps Angular run the application solely on Client side as mentioned in the above.
+When we have components that we want as part of a module we need to add it to declarations block in that module.
+
+
+Templates:
+We can use either external or inline templates in our component. Inline templates require us to use the template property of the Componenet decorator while with
+external templates we use tempateUrl property who value is the location to the HTML file.
+
+Styling:
+We can use either external or inline styling in our components. Inline style require us to use the styles property of the Componenet decorator while with
+external Styling we use stylesUrl property who value is an array of location to the diferrent style files.
+
+Selectors:
+The selectors described in the Component decorator can be in three forms CSS, selector-name, Attribute Selectors, [selector-name] or class
+selectors, .selector-name.
+
+
+Databinding:
+Communication between between the TS code and Template
+
+Types of Databinding:
+1. Interpolation: Refers to embedding expressions into marked up text. By default, interpolation uses the double curly braces {{ and }} as delimiters. The
+expression needs to be String or something that can be converted to a String.
+
+2. Property Binding:
+Property binding in Angular helps you set values for properties of HTML elements or directives. To bind to an element's property, enclose it in square
+brackets, [], which identifies the property as a target property. Property bind and String Interpolation can be used in many places interchangably however
+when setting an element property to a non-string data value, you must use property binding.
+
+3. Event Binding
+Event binding lets you listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches. The event is within parantheses and is
+assigned the code / function to be executed when the event occurs. The event captured can be accessible via the $event keyword in the template.
+
+4. Two Way Binding:
+We combine property and event binding. ngModel directive is a good example that we use with form input elements. The syntax is [(ngModel)]="variable"
+
+Directives:
+Instructions in the DOM
+Generally in the form of attribute selector but can also be used as class or element selectors.
+
+ngIf - A structural directive that renders an element / component based on the fulfillment of a condition. To add an else condition we make use of
+local reference on ng-template component which contains as a child the element to be rendered otherwise. In the condition the else keyword is used followed by
+the local reference this being preceeded with ;
+
+Structural Directives are preceeded with a *. They can change the DOM.
+
+An atrribute directive changes the element they are added on.
+
+ngStyle - Value is a object with key being the style name (camelCase or hypens, like css)and value being the style value. The directive needs to be wrapped in
+[] to bind to the ngStyle property part of the directive class. This directive can be used for changing the element's style.
+
+ngClass - This directive can be used for dynamically adding or removing classes of an element. The directive needs to be wrapped in [] to bind to the ngClass
+property part of the directive class. Value is an object with key being the class to add and value as a condition.
+
+ngFor - A structural directive for rendering an element a certain number of times. We can use for-of loop as the value.
+
+Property Binding in Custom Components:
+--------------------------------------
+By default properties of your custom component aren't bindable in the parent. To make the properties bindable you need to add the @Input() decorator.
+To bind a property with name that is of a different name in the child omponent the @Input decorator accepts value. This value is the name of the property in
+the parent component.
+
+Property Binding in Custom Components:
+--------------------------------------
+By default events of your custom component aren't bindable in the parent. To make the properties bindable you need to add the @Output() decorator.
+To bind a event with name that is of a different name in the child omponent the @Output decorator accepts value. This value is the name of the event in
+the parent component.
+
+View Encapsulation:
+-------------------
+A component's styles can be encapsulated within the component's host element so that they don't affect the rest of the application.
+By default in each component for each element of that component angular attaches an attribute of the same name. Thus emulating the Shadow Dom and applying the
+styles only to that component. This behaviour can be changed by using the encapusation property of the @Component decorator.
+
+Local References:
+-----------------
+We can assign elements of component a variable (Local reference) preceeded with #. This will variable will give us that HTML element. Local References can be
+used directly anywhere in the component. To access the local reference in your Component class we use @ViewChild() decorator which accepts the local reference
+/ Component as the first argument. The type is ElementRef.
+
+Projection:
+-----------
+For our custom components we can send content down from the parent by passing the content with the opening and closing tags of the custom components selector.
+To access this content in the component we use the ng-content directive. However using this approach the styling of the parent is applied rather than the 
+styling of the component.
+
+Lifecycle Hooks: A component instance has a lifecycle that starts when Angular instantiates the component class and renders the component view along with its
+child views. The lifecycle continues with change detection, as Angular checks to see when data-bound properties change, and updates both the view and the
+component instance as needed. The lifecycle ends when Angular destroys the component instance and removes its rendered template from the DOM.
+----------------
+1. ngOnChanges: Called after a bound input property i.e., properties decorated with @Input() changes. Receives an argument of type SimpleChanges.
+2. ngOnInit: Called once the component is initialized. The view is still not rendeded. The hook runs after the constructor is executed.
+3. ngDoCheck: Called during every change detection run.
+4. ngAfterContentInit: Called after content (ng-content) has been projected into view.
+5. ngAfterContentChecked: Called every time the projected content has been checked (by Changed Change Dectection).
+6. ngAfterViewInit: Called after our components view and child views have been rendered.
+7. ngAfterViewChecked: Called every time the view and child views have been checked.
+8. ngOnDestroyed: Called once the component is about to be destroyed.
+
+Creating Custom Directives:
+---------------------------
+Directives are typescript classes annotated with the @Directive decorator. This decorator accepts an object as parameter with selector as key. The selector
+is usually of the attribute selector form.
+
+The directive class should have a constructor which accepts an argument of type ElementRef. This element is injected by Angular based on where the directive
+is attached.
+
+The directive needs to be added in the module's declaration array.
+
+Renderer:
+A better way is to have a constructor which accepts as argument a type of Renderer2. This is because there are use cases where Angular can render the template
+without a DOM. This element is injected by Angular based on where the directive is attached.
+
+Reacting to events on an element the directive sits on:
+Use the @HostListener() decorator on a method which get executed when the event specified as a string argument to the decorator occurs. The decorator can
+also listen to custom events.
+
+An alternative to Renderer2 is @HostBinding() decorator.
+Using the decorator we can bind to properties of the element the directive is attached to. As argument the directive accepts the property to bind to.
+
+Binding to Properties of Directives:
+------------------------------------
+We can bind to properties of our Custom Directive using the @Input() decorator. These properties can be binded to the element the directive sits on
+Angular will handle the rest of figuring out, the bounded property belongs to the element or the directive. If the directive's property name is same as
+directive name then as a shorthand we can wrap the directive in [] when adding it to an element and binding the property.
+
+Structural Directive:
+Angular will pass TemplateRef, i.e, what needs to be rendered based on where the directive is attached to and ViewContainerRef i.e., the location where 
+the rendering should happen.
+
+ngSwitch:
+Can be used as an alternative to ngIf. Has 3 components
+[ngSwitch]
+*ngSwitchCase
+*ngSwitchDefault
+
+
+Services and Dependency Injection:
+----------------------------------
+A service is typically a class with a narrow, well-defined purpose. It should do something specific and do it well. Angular distinguishes components from
+services to increase modularity and reusability.
+The rule of thumb is not to manually create objects of Services rather we let Angular handle the object creation through Dependency injection.
+
+To inform Angular to inject the dependency we need to
+1. Declare the service in the constructor
+2. Add the service class to the providers array which is a key for the object passed to @Componenet() decorator
+
+Angular's Depedency Injection in Hierarchical:
+Meaning a dependency injected at parent complete is available to the child and so on. Injecting the dependcy at the child will override the
+value recieved from the parent.
+If we want to make an instance available application wide when can add it to the root module in the providers array part of the @NgModule declaration
+
+If we need to inject a service in another service add the @Injectable() decorator on the classs of the service that will receive the dependency.
+We can perform cross component communication by emitting an event in a service and subscribing to the emitted event. This requires both component to
+have the same instance of the service injected.
+If you're using Angular 6+ instead of adding a service class to the providers[]  array in AppModule , you can set the following config in @Injectable():
+@Injectable({providedIn: 'root'})
+export class MyService { ... }
+The "new syntax" does offer one advantage though: Services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed automatically.
+
+Routing
+-------
+We declare our routes in the App Module and it is of type Routes. Each route is a JS object with the path and component being keys. This tells angular what
+component to render when the mentioned path is nagivated to. To register the routes we make use of RouterModule's forRoot method which is added as part of the
+imports block in App module. To inform angular where to load the <router-outlet> directive. To switch between routes make use of routerLink directive.
+
+Using / before the route name makes it relative to the domain. Using just the route name however makes in relative to the current path.
+
+routerLinkActive directive can be used for assigning a class for styling the element it is on when that particular route is navigated to.
+routerLinkActiveOptions directive can be used for configurations like exact matching etc.
+
+We can programatically switch routes by using the Router Class that can be Injected in our component. We can use the ActivatedRoute class that can be
+injected in our component for getting meta data abou the Route we are currently on.
+
+Parameters in Routes can also be added with :paramter-name syntax.
+
+If we need a particular route to redirect to another route instead of the component property we can make use of the redirectTo property when setting up the routes.
+
+To catch all other routes not part of the application use the wildcard route ** as the path when setting up the routes. It should always be the last path.
+
+
+Guards:
+We can utilize guards to perform task before nagivating to or away from a route.
+
+We need to implement the canActivate / canActivateChild (for protecting Child Routes from parent Route) method of the CanActivate Interface for executing code
+before a routed to loaded. It receives ActivatedRouteSnapshot and RouterStateSnapshot as Parameters.
+To setup the guard on a Route use the canActivate property when setting up the routes.
+
+To add Guards that trigger when the component Deactivates:
+1. Create and interface with canDeactivate method
+2. Create a guard that implements CanDeactivate interface which accepts the previously created interface as the generic value.
+This way we can create a relationship between the component and the guard
+
+We can pass Static data to a component from the route by using the data property when setting up the routes.
+
+Resolver:
+We can use resolves to execute some logic before the route is loaded. We create a class that implements the Resolve Interface, a generic type indicating
+the type of data that is resolved and implement the solve method that has ActivatedRouteSnapshot and RouterStateSnapshot as parameters.
+To setup the resolver add it to the resolve property during route setup.
+
+IMPORTANT :: Since Routing is handled on Client side, in a production environment we want to land on the index.html page incase the a user directly tries to
+access a route when landing on it. So in case of a 404 error we need to land on the index.html file. An alternate solution is to use Hash URL which can be 
+enabled in the forRoot method during route setup.
+
+routerLinkActive will work only if routerLink is used.
+
+Observables, Observer and Subscriptions:
+----------------------------------------
+Observables are wrappers around a data source. Data sources can emit values over a period of time. Observers are listeners of this event.
+The can listen to each value that is emiited, listen to an error and/or listen when an event is complete.
+Some observables never complete. Like an Observable wrapping a button click. An HTTP request observbale will end on the other hand.
+The observable pattern is used in this concept.
+If a observable ends if an error is thrown or if it completes.
+
+Operators:
+Middleware between the observable and the observer via subscription. This let us perform operations on the data before reaching the observer.
+We can use operators on an observable by calling a pipe method.
+
+Subject:
+A multicasrt observable. An alternative to EventEmitter.
+
+Form:
+1. Template Driven: Angular infers form object from the DOM
+2. Reactive: Form created programatically and synchronize with the DOM
+
+Template Driven:
+- Requires FormsModule
+- While Angular detects forms elements for constructing the form object. Controls that Angular needs to be kept track of need to be explicity highlighted
+using the ngModel directive. Additionally these inputs need to have the HTML name attribute set. The ngSubmit evnt can be used on the form tag to handle form
+submissions. To obtain the form object assign the ngForm to a template reference and pass it to the method handling form submissions.
+
+Which Validators do ship with Angular? 
+
+Check out the Validators class: https://angular.io/api/forms/Validators - these are all built-in validators, though that are the methods which actually get
+executed (and which you later can add when using the reactive approach).
+
+For the template-driven approach, you need the directives. You can find out their names, by searching for "validator" in the official docs:
+https://angular.io/api?type=directive - everything marked with "D" is a directive and can be added to your template.
+
+Additionally, you might also want to enable HTML5 validation (by default, Angular disables it). You can do so by adding the ngNativeValidate  to a control in
+your template.
+
+Angular adds some class (ng-pristine etc) on form inputs based on validity, state that can help style the input accordingly.
+
+The ngModelGroup Directive can be used for grouping form controls in one object. The object being assessible to based on the value assigned to the directive.
+
+setting and patching form values:
+---------------------------------
+We can use the setValue method of ngForm to set the values of ALL our form control fields.
+To set values of only of specify inputs use the patchValue method of the form object part of NgForm.
+To reset the form and its state use the reset function part of NgForm
+
+Reactive Form:
+--------------
+In the Reactive approach we create the form programatically with the type being FormGroup. We need to import ReactiveFormsModule. The form controls are of type
+FormControl.
+Linking programatically created form to HTML Form: use the formGroup Directive on form tag
+Linking programatically created form control to HTML form controls: use the formControlName
+
+To get a control from a form group use the get method.
+
+Form groups need to be specified in the HTML DOM using the formGroupName Directive.
+
+We can Dynamically add form controls by using FormArray (Array of FormControl). We need to specify the it in the DOM using formArrayName.
+
+Custom Validators are functions that accept a FormControl as parameter and return an object of  form { key: boolean }. It is to be noted that if the validation
+is successful null needs to be returned.
+
+Custom Async validators are the same except for the fact they return a promise or observable. During validation Angular adds the ng-pending class to the form
+control.
+
+We can listen to status and value changes on the form or control and react to them through the statusChanges and valueChanges observables.
+
+We can use the setValue method to set the values of ALL our form control fields.
+To set values of only of specify inputs use the patchValue method.
+To reset the form and its state use the reset function.
+
+Pipes
+Allows to transform output in the template. Pipes can take Paramters. the value of the parameter should be after a :
+For example. pipe: parameter1: parameter2 ....
+We can also chain multiple pipes together | pipe1 | pipe2 .... Theorder is important and parsed from left to right.
+
+We can create custom pipes: It is a class that implements the PipeTransform interface. It needs to be annotated with the Pipe decorator and be added to the
+declarations arrary in the module file. Modiying an array or object doesn't trigger the pipe to run. This behaviour can be changed by setting pure property
+to false in the decorator.
+
+HTTP:
+-----
+To make http request we need to import HttpClientModule.
+The methods offered by the HttpClient class are generic so we can mentioned the type of data being returned.
+A useful operator for handling errors is the catchError operator it receive a function as argument whose parameter is same as what would have been received
+when implementing the error function of the subscribe method. Along with catchError, throwError which returns an observable wrapping an error.
+Headers are an onject of type HttpHeaders. The class using initialization accepts an onject of key value pairs
+Headers are an onject of type HttpParams. We can use the set or appends methods for setting query params.
+By default the body of the response is what we recive after we subscribe. However we can change the behaviour to return the complete response or even events
+by using the observe property when making the request. Setting observe to events will give use different events like Sent, Upload, Download etc.
+We can configure the return type by using the returnType property.
+Interceptors can be used for intercepting a request before it reaches the server or before the response reach the subscriber. It is a class that implements the
+HTTPInterceptor Interface and overrides the intercept method. It receives arguments of type HTTPRequest and HTTPHandler. We register the intercept in the
+modules provider array using the below syntax
+{provide: HTTP_INTERCEPTORS, useClass: <Your_Interceptor_Class>, multi: true}
+
+Dynamic Components:
+There are two ways to load Components Dynamically
+1. *ngIf - Component added via selector. *ngIf controls addition of component to DOM.
+2. Dynamic Component Loader (Deprecated) - Component created and add through code. Component manged by Developer. We use a CompoentFactoryResolver to do this.
+This Component needs to be registered with Angular in EntryComponent array in Angular 8 and below.
+
+Modules and Optimizations:
+Angular Modules defines the building block of our Angular app like Components Directives, Services, Pipes. Angular analyzes NgModules to understand your
+application and its features.
+Everyone module is standalone and anything declared within it are available only within it unless exported except services. Instead of BrowserModule use
+CommonModule in child modules.
+
+Lazy Loading
+We can lazy load a module part of a route for which the routes need to be part of the module and then the module can be lazily loaded using loadChildren in
+the module in which it is imported. We can preload module which are lazily loaded by configuring preloadingStrategy when setting up routes in root module.
+
+Services added to Providers array for Lazily loaded modules are available to that module. Unless this is needed it is recommened to use providedIn root
+syntax to make the services available application wide. Services part of provides array of Modules which are imported in lazily loaded modules receive own
+instances. Services added to providers array of eargerly loaded module are available application wide.
+
+
+Building Angular application for production
+1. ng build - new versions of Angular
+2. ng build --prod - old versions of angular
+
+Standalone Components: Angular 14+
+----------------------
+The purpose of this feature was to reduce boilerplate code.
+
+Making a component standalone
+1. Add the standalone property to the object passed in the Component decorator for the Componenet which needs to be made Standalone.
+2. Remove the Component Declation in NgModules
+3. Declare the component in the imports Array of the of the Component decorator where the standalone component is used. For this the parent component will
+also need to be standalone. So we can alternatively, we can add it just to the imports array in the object passed to NgModule(recommened only during migration).
+Incase we need to consume anything part of NgModules we can add to the imports array of the standalone component.
+
+To make the Root Component standalone we need to bootstrap the code directly in addtion to taking care of the above.
+In main.ts use bootstrapApplication() from @angular/platform-browser passing the Root Component as parameter.
+
+Services remain un affected in standalone component and everything remains the same. However for Services that needed to be provided Root module explicitly
+and if the Root Component is standalone then the bootstrapApplication() function has a second argument, an object that offers the providers property.
+To make the Standalone Root Component aware of our Routes we need to add it to providers array when bootstraping our components using importProvidersFrom()
+method.
+
+If a component is Standalone it can be directly used if needed when loading it as part of Routes. We can load it Lazily using the loadComponent when setting up
+the routes. Multiple Standalone components  can be loaded Lazily by importing a Routes file using the loadChildren.
+
+Angular as a Platform & Closer Look at the CLI:
+-----------------------------------------------
+CLI Schematics: Scripts that run that can modify the project. For example generate a new component. Developers can build their own schematics for ng add,
+ng generate and ng update.
+
+Builders: You can build the application for different environments.
+1. ng build, ng test ng lint are all builders for performing different checks and building the code
+2. ng deploy builds and deploys code to a host.
+
+Animations:
+Animations are set up in the animations array part of the object passed to Component decorator. To use animations install the package @angular/animations
+and import BrowserAnimationsModule in the root module.
+In the animations array we create named animation triggers, containing a list of state() and transition() entries to be evaluated when the expression bound to
+the trigger changes i.e the state changes. The state() function accepts a name and the data returned by style() function as parameters. To describe the
+transition from one state to another use the transition() function. This functionaccepts the stateChangeExpression and the value return by animate() function
+as parameters. To transition from an element that doesn't exist in the DOM to being present use void state.
+We can listen for start and done events by using @trigger.start / @trigger.done in the template.
+
+NgRx:
+The idea is to store Globally used state in a central store and have components or services update the store via reducers by dispatching actions. The
+components and services can subscribe to the store to receive the latest data.
+
+Practice dictates that actions be an object with type property for which @ngrx/store library offers the Action interface.
+
+The reducer is a function which accepts the current state and action as parameters and return the new state.
+
+To set up the Store import the StoreModule and set up the reducers using the forChild / forRoot method.
+
+Dispatched actions reach all reducers.
+
+Import @ngrx/effects if you want to manage side effects using Ngrx. Effects are Class we can injects Actions from @ngrx/effects to get access to all dispatched
+actions.
+
+Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a 
+framework-agnostic way.

@@ -1,0 +1,409 @@
+Component:
+A piece of the UI being developed. It is usually created as function that returns JSX.
+JSX stands for Javascript XML it is a syntax extension to JavaScript and looks just like
+HTML. JSX is recommended for describing the UI of the component.
+To use Javascript within JSX and return non string values place it between curly braces {}
+When using create react app Babel compiles JSX to javascript.
+JSX allows JavaScript expressions and other JSX inside {} but not statements like
+if / else, for or switch.
+React component names must always start with a capital letter, while HTML tags must be lowercase.
+JSX is stricter than HTML. You have to close tags like <br />.
+
+The rise of SPAs:
+Websites back in the day where Server side rendered. The client would request for each
+webpage (view) with data from the server which it would then render by the client. An example would
+be websites developed using Wordpress. Here JS was used mostly to perform animations, hover
+effects etc. As more JS code was written it slowly gave rise to SPAs. SPAs are web
+applications rendered on the client with data to be displayed fetched through an API call.
+Each view is rendered on the client with its data being fetched through an API call giving
+the feel of a native desktop / phone application as the page doesn't reload and appears
+that the view is being changed on the same page hence the name Single page applications (SPAs)
+
+Why developing an SPA with vanilla JS is difficult?
+And
+Why do frontend libraries and framework exist?
+1. Requires a lot of DOM manipulation and traversal
+2. Data (state) is usually store in the DOM, shared across entire app making state difficult to
+track.
+
+React is a declarative, component-based, state driven Javascript library
+for building user interfaces.
+
+Components : Building blocks of the User Interface. Components are combined to build a complete UI.
+Each component has its own data, logic and appearance.
+Declarative: Tell React what a component should look like based on the current state and the how it
+is done is handled by React.
+State: Data comsumed by a component. State changes triggers UI re-rendering.
+
+Is React a library or Framework?
+React is considered a library as it deals only with the view. We have to use other libraries to do
+tasks such as data fetching, routing etc.
+
+StrictMode:
+React.StrictMode is a component that perform tasks like verifing best practices are followed in components,
+deprecated methods are not used and rendering your component twice to detect problems and if so warms us
+through a message in the console.
+
+
+Some properties having different names as their original names are reserved in JavaScript. For example:
+className inplace of class, htmlFor inplace of for.
+
+Styling in React:
+By using the ES6 import syntax for importing css styles in a component i.e., import "path/<filename>.css"
+We add styles globally and it is not scoped to a component.
+
+Props:
+Allows for the passing of data from a parent to child component. We send the data from the parent as
+attributes (key-value pairs) and receive it as an argument called props by convention in the Component's
+function. Props are readonly i.e., the component should not mutate its own props and can cause side effects
+
+Data Flow:
+React has a one-way data flow (parent to child) making it predictable as to where the data is coming from and
+hence easy to debug.
+
+React Fragment:
+A piece of JSX can have only one root element and we have to use React.Fragment
+component if we want to use muliple elements. Fragments don't create a new element in the DOM.
+We can wrap the children components using <React.Fragment> or <>.
+
+
+Event Listeners:
+We add event listeners directly on the HTML element using the HTMLs inline event listener. However the event name
+follows camelcase.
+
+State:
+In React, component-specific memory is called state.
+Updating a component's state triggers React to re-render the component.
+State helps persist local variables between renders i.e. local variables
+created as state will not loose their value on re-render.
+To create a state in a react component we use the useState hook which
+returns an array contain the current value of the state and a function to
+update the state's value. The state creation should happen at the the top
+most level of a component.
+We should always use the setter function provided when setting the state
+thus keep React in the loop regarding the changes being made to state. In
+some case we might be able to change the state without using the setter
+function like in case of object but this is bad practice and should be
+avoided.
+Multiple state updates in an event handler are batched. We can opt out of
+automatic batching by wrapping a state update in ReactDOM.flushSync().
+
+Updating state based on current state:
+Pass a function in the setter that receives the current state as a parameter
+
+Rendering can happen at any time, so components should not depend on each others’
+rendering sequence.
+
+Controlled Elements:
+Form input elements have their own state which is handled by DOM. To keep state in
+a central place we can have React control the values of form input elements.
+Controlled component is specially useful if we
+1. Want to allow multiple ways to update an form input elements
+2. If we needed state anyway - to render the UI on every edit.
+
+State management:
+Deciding when to create pieces of state, what types of state are necessary,
+where to place each piece of state and how data flows through the application.
+
+Types of State:
+Global:
+State required by many component.
+This state is shared by all components
+Example: React's ContextAPI or Redux
+
+Local:
+State needed only by one or few components.
+Accessible to the component and child components if made available through props.
+Example: useState() Hook
+
+Guideline: Use local state as much as possible.
+
+Read, State: When and Where from PDF Slides.
+
+The children prop:
+You can use props.children on components that represent ‘generic boxes’ and that don’t
+know their children ahead of time.
+Instead of invoking the component with a self-closing tag, if you invoke it with full opening
+and closing tags you can then place more code between it.
+This de-couples the component from its content and makes it more reusable.
+
+When to split components:
+1. Lgical Separation of content/layout
+2. Reusability
+3. Responsibilities / complexity 
+4. Personal Coding Style
+
+Component Categories:
+1. Stateless / Presentational - No State, may receive props and present data or content.
+2. Stateful - Have state.
+3. Structural - Pages, layouts or screens of the app. Result of composition.
+
+Prop drilling:
+Passing props deep down into a component tree. The props being passed down are not even
+consumed by the components in between.
+
+Component Composition:
+Combining different components using the children prop (or explicitly defined props)
+
+Component composition is used to make component reusable as well can be used to solve the
+prop drilling problem.
+
+Proptypes:
+Allow us to specify the type of our props. If types are necessary it is recommended we use
+Typescript instead of JS to develop React Apps.
+To use prop types import PropTypes from "prop-types" package.
+
+Components Vs Instance Vs Element:
+Components is a piece of the UI and acts like a template or blueprint.
+Each time we use the Component in JSX an instance is created of the
+component and therefore each instnace will have its own lifecycle, props and state.
+React Element is what a component returns in case of functional components. It is an
+object describing the DOM nodes.
+
+FYI: The $$typeof property of the React element is a security feature against CSS attacks
+It is of type Symbol that can't be represented by JSON.
+
+We should never call React Components by calling i.e, Component() rather specify them as
+<Component />. This way react will create treat them as Components from which instances
+should be created avoiding issues with states as a voilation of the expected behaviour of
+Hooks.
+
+Render Phase:
+How rendering works in React?
+1. Two situation trigger render
+- Initial render
+- State update in one or more component instances (re-render)
+Render process is triggered for the entire application.
+Renders are not triggered immediately but scheduled for when the js
+engine has some time.
+
+Component Tree -> React Element Tree -> State change in component -> 
+Component and Children are rendered -> New virtual dom with the new react element ->
+Gets reconsiled with old fiber tree to produce updated fiber tree through diffing and
+a list of effects that indicate updates updates that need to be made to the DOM.
+
+
+
+Virtual DOM:
+Tree of React Elements created from all instances in the component tree.
+
+Reconsilation: Deciding which DOM elements actually need to be inserted,
+deleted  or updated in order to relect the latest state changes.
+This is done by a reconsiler called Fiber.
+
+Fiber Tree:
+Internal tree that has a fiber for each component instance and DOM element.
+This tree is not created on every render.
+Each fiber Keeps track of things like current state prop, side effects, used hooks, queue of work
+containing DOM updates need for that element achieved through Diffing algo.
+It is a linked list where each first child has a link to the parent  and each other sibling have a
+link to the previous sibling.
+Work done by fiber is asynchronously and enables features like Suspense and transitions in React 18.
+
+Commit Phase:
+React updates to the DOM
+Committing is synchronous - This is because DOM should never show partial
+results, ensuring a consistent UI
+Updated fiber tree become current fiber tree
+
+React is not responsible for the committing phase because the DOM is just
+one of many host that can be use with React. We can have i0S and Android devices
+as host and much more therefore resulting in different renderers like ReactDOM,
+React Native etc
+
+How diffing works:
+Two assumptions
+1. Two elements of different types will produce different trees.
+- Different element same position - Element and children destroyed and recreated, state lost
+- Same element same position - Element and children kept, state preserved.
+2. Elements with a stable key prop stay the same across renders.
+- The key prop tells the diffing algo that the element is unique.
+- When the keys stay the same across renders the element will be kept
+in the DOM (even if the position in the tree changes).
+- When the key changes between renders, the element will be destroyed and a new one will be
+created (even if the position in the tree is the same as before)
+
+How React Handles Events:
+- It can be imagined React registers all event handlers on the root DOM
+container.
+- It register one event per event type.
+- Behind the scenes react performs event delegation for all events in our
+application.
+- React provides Synthetic Events which is a wrapper around Native DOM events.
+- The scroll event doesn't bubble.
+- Prevent browser default behaviour for events using preventDefault() in our React
+event handlers.
+- Attach Capture to the event name to capture events during capturing phase.
+
+Component Instance Lifecycle:
+1. Mount - rendered for the first time with fresh state and props
+2. Re-render - state, props or context changes, parent re-renders
+3. Unmount - removed from the screen and state and props are destroyed.
+
+
+useEffect:
+Used to keep a component synchronized with the external world. Can perform
+side effects. It accepts a function that performs the side effect which
+optionally returns cleanup function and a second parameter dependency array as
+parameters.
+Dependency Array:
+Specifies the dependencies that cause the effect to execute on re-render.
+The dependencies can be state or prop variable. Every dependencies used inside the
+effect must be included in the dependency array. 
+Empty dependency array executes only mount.
+Layout Effects run before Browser paints the changes to the screen.
+
+React compares the dependency values using the Object.is comparison.
+Each Effect “captures” the state value from its corresponding render. 
+
+When you update a component during rendering, React throws away the returned JSX and
+immediately retries rendering. To avoid very slow cascading retries, React only lets you
+update the same component’s state during a render. If you update another component’s state
+during a render, you’ll see an error.
+
+useEffect cleanup function:
+- function that we can return from an effect
+- Runs
+1. before the effect is executed again
+2. after a component has unmounted
+- Necessary when the side effect keeps happening after the component has been
+re-rendered or unmounted.
+- Each effect should do only one thing! Making cleaning up easy.
+
+React Hooks:
+Special built-in functions that allow us to Hook into React internals:
+ - Creating and accessing state from Fiber tree.
+ - Register side effects in Fiber tree
+ - Manual DOM Selections
+ 
+Rules of Hooks:
+ - Can be decalred only at top level of function. This is because React calls
+ Hooks in same order they are declared.
+ - Can be called only in function component or custom hooks i.e., React functions
+ 
+Whenever the initial state needs to be computed we can pass in a function that React
+will call to useState(). The passed function will not receive parameters and should be pure.
+ 
+useRef:
+Directly selecting DOM elements isn't the React way of doing things. We make use of
+refs.
+
+- Has mutable .current property that is persisted across renders.
+- Select and store DOM elements
+- Refs are for data that is not rendered. Use state otherwise.
+- Updating refers do not cause the component to re-render.
+- You shouldn't read from (or write to) refs during the rendering logic. It can cause
+code to behave strangely.
+
+When accessing DOM nodes with the ref attribute we can also pass a callback as the value.
+It will receive the dom node as a parameter when the ref is being set and null when it is unset.
+A component doesn’t expose its DOM nodes by default. You can opt into exposing a DOM node by using
+forwardRef and passing the second ref argument down to a specific node.
+
+You can force React to update (“flush”) the DOM synchronously. To do this, import
+flushSync from react-dom and wrap the state update into a flushSync call
+
+Reuse logic with Custom Hooks incase the logic contains hooks.
+Names for Custom Hooks should start with use
+
+React Class Components:
+Prior 2019 Components with state where created with Classes which extended React.Component.
+JSX should be returned from the render method. Hooks can't be used in class components.
+State is available through the state property. Props is received at time of initialization.
+The this keyword will need to be bound.
+
+Some important Lifecycle methods
+Allows us to run side effects at different points of the component lifecycle.
+1. componentDidMount - Called immediately after the view is rendered i.e., painted to the DOM.
+2. componentDidUpdate - Called only on re-render. Receives the prevProps and prevState respectively
+as arguments.
+3. componentWillUnmount - Called before the component is un-mounted from DOM. Can be used for cleanup.
+It will not get executed between renders like the return function of useEffect.
+
+useReducer:
+An alternate way of setting state, ideal for complex state and related pieces of state
+Needs a reducer function containing all logic to update state. Decouples state logic from component.
+The reducer function has to be pure. It has the current state and action as its parameters and returns
+the next state based on action.
+useReducer returns a dispatch function besides the current state to trigger state updates. The dispatch
+function takes an action as its argument.
+
+Styling Options:
+1. Inline CSS using the style prop of the JSX element. Scoped to the JSX element.
+2. External CSS file. Scoped to the entire app.
+3. CSS Modules. One external file per component. Scoped to the component.
+4. CSS in JS. Scoped to component. External file or component file.
+5. Utility first CSS. Applied to JSX elements with the className prop. Scoped to the JSX element.
+6. Use UI libraries like MUI, Chakra UI, Mantine.
+
+To make a style in a css module file globally available i.e., preventing a unique id from being
+appended, we can use the :global(<selector>) function. 
+
+
+Bootstrap a React project with Vite:
+npm create vite
+
+Routing:
+-We perform client side routing.
+When routing we match different URLs to different UI views. JavaScript
+is used to update the DOM on a route change and thus page is never reloaded.
+-One such library is react-router that performs such actions.
+Two ways to define Routes since V6.4
+1. Tranditional declarative way i.e., we use Components offered by React Router.
+We configure the WebApp for routing by surrounding our entire application
+with the BrowserRouter component. To define a route use the Route component
+with the path and element props. All routes should be clubbed together in the
+Routes component. To navigate to a different route we can use
+a. Link component with the to prop
+b. NavLink component with the to prop
+The different between Link and NavLink is that an active class it added that we can use
+incase we want to perform styling.
+
+Nested Routes:
+Controls what component is visible on the UI within an existing route.
+We create nnested routes by nesting <Route> component within an existing Route component.
+To display a nested route we can use <Outlet> component.
+We can display a default nested route if no other matches using the index prop in place
+to prop i.e., <Route index element={} />
+
+Storing State in the URL:
+1. Params
+In our route defination we use a placeholder starting with : i.e., :<placeholder>
+To consume the Route params in the corresponding loaded component use the useParams
+hook which returns an object containing the placeholders used in the route defination as
+keys.
+2. Query strings
+To the URL you need to navigate to follow the URL with
+?<queryname>=<value>&<queryname2>=<value>....
+It is not match by React Router so we don't touch the route defination.
+To consume the Query strings in the corresponding loaded component use the useSearchParams
+hook which returns an array in which the first value is the object of type URLSearchParams
+and the second is a setter function incase the query strings needs updating.
+
+Programatic Navigation:
+1. useNavigate
+To navigate programatically we can use the useNavigate hook which returns a function.
+We can use that function and pass a url to navigate to. We can also use positive or negative
+number to navigate that many routes forward or backwards respectively.
+2. <Navigate />
+Can acts as a Redirecting mechanism when wanting to load a default route during nesting of routes.
+The replace prop when true will cause the navigation to replace the current entry in the history
+stack instead of adding a new one.
+
+Context API
+Pass data throughout the app without manually passing props down the tree.
+The state is made available to the child components of the context.
+Provider: gives all child components access to value
+Value: data that we want to make available
+Consumers: all components that read the provided context value.
+When the value is updated consumers are updated.
+
+We start by creating a context using createContext() which can accept a default
+value but it can't change over time so we generally don't pass in any value here.
+Then we wrap the component's JSX with one of the Components we get access to
+after creating the Context i.e., Provider Component. The Provider component has the value
+prop that we can use to provide a value to all the Child components wrapped by the
+Provider component.
+To consume the value we can use the useContext Hook passing in the Context that was created.
+
+

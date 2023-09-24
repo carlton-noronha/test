@@ -1,0 +1,414 @@
+Add CSS to HTML
+
+1. Inline: Use the style attribute of an HTML Tag to specify declarations. Multiple declaration can be separated by semi-colon. A Declation consists of
+property and value. The property is separated from the value by colon.
+2. Internal: We use the style tag within head tag in specify all the css rules. A rule consist of a selector and declarations. A selector specifies the
+HTML element to style.
+3. External: The difference between Internal and External styling is that all CSS rules are written within an external file and the external file is linked
+to the HTML file using the link tag. The link tag uses the rel attribute for mentioning the relationship to the HTML file in this case it will be
+stylesheet. It also uses the href attribute for mentioning the css file location.
+
+Fonts:
+We can use the serif, sans-serif and monospace fonts if we need to change fonts on our website. These are keywords that a browser (atleast popular ones) are
+bound to understand as they come with build in support for the same.
+
+Selectors:
+1. Element: We use the HTML tag to style all elements of that tag present in the HTML document.
+2. Class: We assign all elements that need the same style the same class name using the class attribute of those HTML elements. Then reference class name in
+the css file preceeding it with . (period). This serves now as the selector
+3. Universal: Style a elements in the HTML Document with same style using the Universal selector, *
+4. ID: We assign the element that needs to have a unique style and id using the id attribute. We the reference the id preceeding it with # to form the
+selector to style the element.
+5. Attribute: We can style elements having a specific attribute by enclosing the attribute within [] to form a selector.
+[atrribute~=value] - contains value in list
+[atrribute|=value] - starts with value/value-
+[atrribute^=value] - starts with value
+[atrribute$=value] - end with value
+[atrribute*=value] - contains value
+[atrribute*=value i] - contains value case insensitive
+
+Cascading and Specificity:
+Cascading means many rules can be applied to the same element. Specificity deals with the priority of the rules by resolving conflicts arising from multiple
+rules.
+
+The below specifies the order of priority from highest to lowest:
+
+inline styles
+id
+class, pseudo class and attribute
+Tag and Pseudo Element
+Universal
+
+Inheritance:
+An element inherits the styles of its parent directly or indirectly. This should be taken with a pinch of salt as it is not true for all styles.
+An inherited style has a lesser specificity than even the browser default styles.
+
+Combinators:
+Allows combining of multiple selectors to be more specific with the selection process for styling.
+A rule which uses combinators is simply more specific than a rule without any
+
+1. Adjacent Sibling (+) : The second element should be the next immediate sibling of the first element
+2. General Sibling (~) : The second element should be a sibling of the first element
+3. Direct Child (>) : The second element should be the direct child of the first element
+4. Descendent (whitespace) : The second element should be a descendent of the first element.
+
+Box Model:
+Every element in the HTML document is interpreted as a Box by CSS. The Box Model comprises of
+1. Content: The content of the element
+2. Padding: Spacing between content and border
+3. Border: The borders of the element
+4. Margin: Spacing between one element and its siblings.
+
+Ouline is not part of the box model however it appears after the border and before the margin.
+
+Margin Collapsing:
+------------------
+There are 3 cases related to Margin Collapsing:
+
+1.Adjacent siblings which both have margins
+The margin of the sibling having a bigger margin will be applied as the margin between the two elements.
+
+2.A parent which holds one or more child elements where the first and/ or last (or the only) child has margins
+To be precise, the first and/ or last or the only child has to have margins (top and/ or bottom). In that case, the parent elements margin will collapse with
+the child element(s)' margins. Again, the bigger margin wins and will be applied to the parent element.
+If the parent element has padding, inline content (other than the child elements) or a border, this behavior should not occur, the child margin will instead be
+added to the content of the wrapping parent element.
+
+3.An element without content, padding, border and height
+If you got an element with no content, no padding, no border and no height, then the top and bottom margin will be merged into one single margin. Again, the
+bigger one wins.
+
+Shorthand properties:
+Combine the value of multiple properties in a single property (the shorthand property). For example background, margin, padding etc
+
+Width and Height:
+Block elements unlike inline elements always take the full width of the HTML Document.
+
+Setting 100% height to a child can have an effect only if the parent element has an explicitly applied height because if the parent element determines its
+height from the heights of the children it would be kind of an infinite loop.
+
+Box Sizing:
+By default height and width properties do not account for padding and border i.e. the width and height is calculated using content of the element.
+It can be changed using the box-sizing property.
+
+Pseudo Classes and Pseudo Elements
+Pseudo Classes: Define style of a specific state of an element. Syntax :class name
+Pseudo Elements: Define style of a specific part of an element. Syntax ::element name
+
+Grouping:
+If Two Rules share the same declarions we can group the selectors by separating them by a comma and retaining the common declarations.
+
+!important
+Overrides specificity. It is mentioned after a declaration.
+
+:not() pseudo class
+represents elements that do not match a list of selectors.
+
+Position Property:
+------------------
+By default all element have a position poperty with value as static.
+Along with the position property which has a value of relative, absolute, fixed, sticky we use the top, bottom, left and right properties to tell
+the browser where the element needs to be placed.
+
+The viewport is the visoible part of the HTML Document.
+
+Positioning works for both Block and Inline elements.
+
+We are unable to position an element with properties top, bottom, left and right if they do not have position as static. The same is true for the z-index
+property.
+
+z-index:
+If two elements have the same z index then the order in which the elements appear in HTML Document matters.
+
+The z-index property specifies the stack order of an element.
+An element with greater stack order is always in front of an element with a lower stack order.
+Note: Stacking context ?
+
+Fixed:
+Element is removed from the document flow. It also happens to convert the element into an inline-block element. The positioning context is the viewport.
+
+Absolute:
+Element is removed from the document flow. It also happens to convert the element into an inline-block element. There are two cases for the positioning
+context.
+1. If none of the ancestors have the position property applied then the positioning context is the html element.
+2. If any ancestors has the position property (with value besides static) applied then the positioning context is the nearest ancestor with the position
+property.
+
+Relative:
+Element is not removed from the document flow. The positioning context is the element itself. So top, left, bottom, right move the element from its original
+position.
+
+Sticky:
+Hybrid of Relative and fixed. The element is fixed when the distance between the element and the viewport is specified. The margin of the element is not taken
+into account when the fixture is applied. This behavior ends once the end of the content in the parent is reached.
+
+Background and Background Images:
+-We can use the background-size property for setting the size of the image. One value indicated width of the image. Two values indicate width and height. We can
+also use predefined values.
+-We can use the background-repeat property to specify if the image needs to be repeated or not.
+-We can use background-position to position the image.
+
+Gradients are image and so must be set using background-image or background property. To create linear gradients use the linear-gradient() function.
+To create radial gradients use the radial-gradient() function.
+
+Stacking multiple background:
+We can stack multiple backgrounds on each other using the background property separating each value by comma. Each value will have its own configuration.
+The one appearing first will be on top.
+
+Filters:
+We use the filter property and some pre-defined functions as the value.We can do things like blurring, grayscaling.
+
+
+Different Units:
+px
+%
+rem (root em)
+em
+vh
+vw
+
+Where units matter ?
+font-size, padding border, margin, width, height, top, bottom, left and right
+
+How is the size calculated?
+Absolute lengths: px, cm, mm ... Based on pixels of screen
+Viewport lengths: vh, vw, vmin, vmax, % .. --- Adjust based on Viewport
+Font relative lengths: rem, em, % ... -- Adjust based on default font-size
+
+How % works ? 3 Rules
+1. When we have an element with a fixed position and utilizes % units. The containing block is the viewport.
+2. When we have an element with a absolute position and utilizes % units. The containing block is the ancestor (content + padding). The ancestor
+is closest element with a non static position. If not the containing block is the viewport.
+3. When we have an element with a relative / static position and utilizes % units. The containing block is the ancestor (content). The ancestor
+is closest element which is block element.
+
+We can override the default font-size of the browser by mentioning the font-size in % units.
+
+Rem and em:
+Using em requires us to be careful as em tends to calculated using inherited font-size besides it own font-size.
+Using rem will only take the font-size of the root element (html) when calculating the font-size.
+
+Hardware Pixel vs Software Pixels:
+In modern mobile devices the pixel density is high making website appear as if they were displayed on a desktop. Due to this we observe behavior like
+small font etc. We need to convert Hardware pixels to Software pixels (CSS pixels). 1inch = 96px according to CSS pixels. According to this it would
+appear as our mobile device has a 10 inch width with modern smartphones while this is not the case. To fix this we adjust the website to our device
+width using the Viewport Metatag
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+Media queries:
+Use the @Media syntax for creating responsive pages
+@Media(min-width: ...) - apply styling for min-width and above
+@Media(max-width: ...) - apply styling for max-width and below
+
+Order of media queries is important to ensure no confusion and unnessary behavior.
+
+We can use mutiple Media queries together by using logical operators like: and ,(as or)
+
+To import your own custom fonts:
+We use the @font-face selector with properties font-family and src. If we import different font faces of the same font they the font-weight property should
+also be added otherwise the browser will used the latest import irrespective of the font-weight set when using the font.
+
+@font-face {
+  font-family: ;
+  src: url();
+}
+
+We can utilize the font my using the value assigned to font-family.
+
+Flexbox:
+--------
+Change the way elements are displayed. When wee use display:flex; declaration it converts that element to a flex container. The elements inside the container
+are called flex items.
+Flex container:
+flex-flow
+justify-content
+align-items
+align-content
+
+Flex items:
+order
+flex
+align-item
+
+When we use display: flex we automatically use the flex-direction and flex-wrap properties.
+With flex-direction: row. Flex items are decresed in width till the contents length and then the element overflow out of the container. However
+with flex-direction: column width of the flex items are maintained if mentioned but the content overflows the flex item if not.
+
+align-items / align-content aligns items along the cross axis. align-content will come into picture when we have multiple rows or columns in the container.
+justify-content align-items along main axis
+
+order changes the order of flex items.
+align-self allows to align a flex items on cross axis.
+flex-grows allows flex items to take remaining space in the container. The space assigned to each items depends on if they have a flex-grow property > 0 and
+on the remaining space available.
+flex-shrink a value of 0 prevents a flex item from shrinking. Items with different shrink value determine the relation of shrink compared to each other.
+flex-basis: size (width or height depends on flex-direction) of the element on main axis. A value of auto falls back a value defined for width or height.
+
+
+For flex-direction: row
+Main axis: top-left to top-right
+Cross axis: left-top to left-bottom
+
+For flex-direction: row-reverse
+Main axis: top-right to top-left
+Cross axis: right-top to right-bottom
+
+For flex-direction: column
+Cross axis: left-top to right-top
+Main axis: left-top to left-bottom
+
+For flex-direction: column-reverse
+Cross axis: left-bottom to right-bottom
+Main axis: left-bottom to left-top
+
+CSS GRID:
+---------
+To convert a container into a Grid use the display property with value as Grid. The default behavior is one column with as many rows as direct children of
+the container. Nested children are not taken into account for default grid behavior.
+To define the number of rows use grid-template-columns. It takes a list of values where each value is the size of the column. To define the number of rows
+use grid-template-rows. It takes a list of values where each value is the size of each row.
+When we use the <number>fr unit in defining columns the remaining space is taken into account and is spilt between all the columns using the fr unit based on
+their preceeding number. Using auto takes the all the remaining space available for a column / row. If we need continous columns/rows of the same size we can
+use repeat(number-of-times, pattern) function. To set the min and max width / height of column / row use the minmax(min-value, max-value) function.
+We can use span <number> to mention the number of column / rows to span. -1, -2 ... refers to last column / row, second last column / row  and so on.
+We can assign row and column line names by enclosing the names within [] and placing it before the column / row size. A line can have more than one name
+separated by space. We can give gaps between columns and rows using the column-gap and row-gap properties. The cells created by the grid can be give names
+using grid-template-areas. The value is a string, number of string depends on the number of rows. The names within the string are sepatated by space and
+should repeated as many times as the number of columns. We can use . if we do not want to assign a cell a name. To assign a child to the cells use grid-area.
+If there is no space in the grid new items are added on a new row. This defualt behavior can be changed with grid-auto-flow property.
+grid-auto-columns can be used to set a value to ensure the width of all columns is the same.
+grid-auto-rows can be used to set a value to ensure the height of all rows is the same.
+
+Grid by defualt repects dom elements flow which can cause the grid to have empty spots based on your grid template. This can be overwritten by using the
+grid-auto-flow with value as dense. This is however not accessibility friendly.
+
+NOTE: Explicit defind behaviour will also override auto behaviour 
+
+We can use the auto-fill utility with repeat() i.e repeat(auto-fill, size) to have the behaviour of fill the viewport width before adding items to new row.
+auto-fit does the same however cemters the items horizontally incase there are few items on the first row i.e., viewport width is not full for first row.
+
+Automatically generated grid areas can be created if we name grid-lines with -start and -end
+
+We can use justify-items to align horizontally.
+We can use align-items to align vertically.
+We can use justify-content to align the grid as a whole horizontally
+We can use align-content to align the grid as a whole vertically.
+We can use justify-self to align an item in the grid horizontally
+We can use align-self to align an item in the grid vertically
+
+Shorthands Syntax:
+grid-column: grid-column-start / grid-column-end
+grid-row: grid-row-start / grid-row-end
+grid-area: grid-row-start / grid-column-start / grid-row-end  / grid-column-end
+gap: row-gap column-gap
+
+Order of Overlapping rows can be changed using z-index.
+
+If we need to specify the number of columns or rows to span over we can use grid-column-start and grid-column-end or grid-row-start and grid-row-end
+accordingly.
+
+Grid vs Flexbox:
+Grid is for 2D positioning. Flexbox is for 1D positioning.
+
+Transformations:
+We can perform transformations like rotating an element, moving an element etc using the transform property. Based on the value of transform property
+we can change the pont of origin of the transformation using transform-orgin property. With transform we can use perspective function to change the reference
+point to the viewer. Larger the value futher we are. Alternatively we can use the perspective property however it needs to be applied to the parent. The angle
+can be can be changed using the perspective-origin property. By default 3D space is flat inside a container with transformations. We can use the
+transform-style property to change that.
+
+Transitions and Animations
+
+Transitions enable you to define the transition between two states of an element. Different states may be defined using pseudo-classes like :hover or :active
+or dynamically set using JavaScript.
+
+Transition syntax
+transition: WHAT DURATION DELAY TIMING-FUNCTION; 
+
+Example:
+
+transition: opacity 200ms 1s ease-out;
+
+Instead of this shorthand, you can also specify the four individual properties:
+
+1) transition-property  (https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property => transition-property: opacity; 
+
+2) transition-duration  (https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) => transition-duration: 200ms; 
+
+3) transition-timing-function  (https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function) => transition-timing-function: ease-out; 
+
+Possible timing function values are: ease-out , ease-in , linear , cubic-bezier()  and a couple of others. See the above link as well as the next lecture for
+more details.
+
+4) transition-delay  (https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay) => transition-delay: 1s;
+
+Animations:
+
+CSS animations make it possible to animate transitions from one CSS style configuration to another. Animations consist of two components, a style describing
+the CSS animation and a set of keyframes that indicate the start and end states of the animation's style, as well as possible intermediate waypoints.
+
+Animation Syntax
+animation: NAME DURATION DELAY TIMING-FUNCTION ITERATION DIRECTION FILL-MODE PLAY-STATE; 
+
+Example:
+
+animation: wiggle 200ms 1s ease-out 8 alternate forwards running; 
+
+Can be translated to: "Play the wiggle keyframe set (animation) over a duration of 200ms. Between two keyframes start fast and end slow, also make sure to wait
+1s before you start. Play 8 animations and alternate after each animation. Once you're done, keep the final value applied to the element. Oh, and you should be
+playing the animation - not pausing."
+
+Instead of this shorthand, you can also specify the individual properties:
+
+1) animation-name  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name => animation-name: wiggle; 
+
+2) animation-duration  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration) => animation-duration: 200ms; 
+
+3) animation-timing-function  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) => animation-timing-function: ease-out; 
+
+Possible timing function values are: ease-out , ease-in , linear , cubic-bezier()  and a couple of others. See the above link for more details.
+
+4) animation-delay  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay) => animation-delay: 1s; 
+
+5) animation-iteration-count  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count) => animation-iteration-count: 8; 
+
+6) animation-direction  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) => animation-direction: alternate; 
+
+7) animation-fill-mode  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) => animation-fill-mode: forwards; 
+
+8) animation-play-state  (https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state) => animation-play-state: running; 
+
+In JavaScript we can listen for animationstart, animationend and animationiteration events
+
+Currently we have CSS3, before we had CSS2, but we will never have CSS4 and CSS5. Instead, the single CSS features are now developed separately, each one in
+its own "module", and if one module is ready, it's released, independent from other features which are developed further in other modules.
+
+CSS Variables:
+We declare the variables in the :root pseudo class using the below syntax
+
+:root {
+	--variable-name: value;
+	--variable-name2: value
+}
+
+And use it using the var() function:
+
+var(--variable-name)
+
+Vendor Prefixes:
+Browsers implement new features and at different speeds. So browser vendors used to add prefixes for experimental features so their rendering engine
+is able to able to recognize the CSS code at render the UI according.
+
+We can also use @supports() to determine if a specific property is supported and if so apply it.
+@support(display: flex) {
+	CSS Rules....
+}
+
+Polyfills:
+A Pollyfill is a JS which enables certain CSS features in Browsers which would otherwise not support it.
+
+Naming Classes:
+Use kebab-case
+Name class by feature
+Follow DEM(Block Element Modifier) notation.
