@@ -1,0 +1,28 @@
+Tailwind is a utility first CSS framework having many utility classes that can be composed directly in the markup to build designs.
+Advanatages:
+1. Don't need to focus on class names.
+2. Utility classes have taken many design decisions to keep the UI consistent.
+3. Support for responsive web design
+4. Good documentation
+
+Disadvantages:
+1. Markup can become cluttered after addition of utility classes.
+2. Many utility classes to learn
+3. Feels like you are giving up on Vanilla CSS
+4. Requires installation and so consumes a few minutes of your time
+
+The documentation is really easy to follow as so all utility classes can be referred from there.
+
+Tailwind utility classes are design with mobile first approach. Tailwind offers 5 breakpoint that we can use to design the UI as the screens
+increases. What this means is that unprefixed utilities (like uppercase) take effect on all screen sizes, while prefixed utilities (like md:uppercase)
+only take effect at the specified breakpoint and above.
+
+@layer
+Use the @layer directive to tell Tailwind which “bucket” a set of custom styles belong to. Valid layers are base, components, and utilities.
+
+We will make a set of CSS properties and store them into a variable for later. Use @apply to inline any existing utility classes into your own custom CSS.
+
+Use the theme() function to access your Tailwind config values using dot notation.
+
+Override tailwind's default theme configuration by writing custom theme in the theme property of tailwind.config.js. To extend from the current theme add
+the custom theme to the extends property in tailwind.config.js

@@ -406,4 +406,47 @@ prop that we can use to provide a value to all the Child components wrapped by t
 Provider component.
 To consume the value we can use the useContext Hook passing in the Context that was created.
 
+Performance optimizations:
+1. Passing a component that doesn't require rendering as prop or child component.
+When a component is passed as prop or used as a child component react know it will remain the same
+as they are created before the parent component and cannot be dependent on the parent's state and
+hence React won't revisit the subtree.
+2. Use memo to memoize components, useMemo to memoize objects and useCallback to memoize functions
+memo - component will not re-render when its parent re-renders, as long as the props stay the same between renders.
+useMemo and useCallback memoize values and functions respectively and return the cached value unless the dependencies change.
+useMemo memoizes the result of the function while useCallback memoizes the function itself.
+The other use case for memoization is to avoid expensive re-calulations and to
+memoize values that are used in dependency array of another hook.
+Setter functions are stable and hence do not need memoizing.
+3. Optimizing context re-renders
+We can optimize context renders by memoizing the values.
+4. Bundle size reduction:
+Bundle size: Amount of JS users need to download to start using the app.
+Bundle: JS file contaning the entire application code.
+Code splitting: Splitting the bundle into multiple parts so that they can be dow
+nloaded when needed.
+
+lazy() lets you defer loading component’s code until it is rendered for the first time. Lazy should be called outside the component.
+It accepts a load function which should return a promise or any thenable that resolves to an object whose
+.default property is a valid React type.
+lazy returns a React component you can render in your tree. While the code for the lazy component is still loading, attempting to
+render it will suspend. Use <Suspense> to display a loading indicator while it’s loading.
+<Suspense> lets you display a fallback until the children are loaded.
+
+Redux:
+3rd Party Global State Management Library. We dispatch actions to a store. The store has access to reducers which in turn updates the
+state in the store. The reducers are pure functions which receives the current state and action as parameters.
+
+Redux Middleware:
+Sits between the dispatching of action and the reducer. Making it perfect for side effects. For data fetching the most popular
+middleware is Redux Thunk. Our action creators need to return a function. This function receives the dispatch function and getState
+function from redux when redux executes the function.
+
+React Context API vs Redux:
+Context API is built into React. Redux is a separate library.
+Adding a new independent state is easier in Redux but can lead to provider hell in Context API.
+Context API has no mechanism for async operations while in Redux is it supported through middlewares.
+It is recommended to use Context API for global state that doesn't change frequently. For nested state libararies are redux toolkit are
+useful.
+
 
